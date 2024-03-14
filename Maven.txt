@@ -1,0 +1,20 @@
+프로그램 개발 즉 java , c python 등을 코딩할시 흐름! 즉 코드를 따라하든 작성할때 어떻게 작동되는지 한번 정도는 생각!
+
+
+1.maven 설치
+    - 자바 빌드 도구 : 빌드 자동화
+    - 빌드 : 프로젝트 생성 => 라이브러리 설정=> 코드 작업 => 컴파일 => test => 패키지 생성 => 배포
+    - 패키지 : 압축파일(jar, war)
+    - 명령어 : mvn compile/ mvn package
+2.톰캣 서버 설치
+    - 웹 어플리케이션 동작을 위해선 서버 필요 (단 자바로 작성된 프로그램을 해석해서 응답이 가능해야 함)
+    - WAS(Web Application Server)
+
+    웹서버(html, css, js 응답이 가능한 서버 ): 아파치 웹서버, NginX
+
+    
+3.Java EE
+    - 자바 기초 => Java SE(Standard Edition)
+    -Java EE(Java Enterprise Edition) : SE + 웹 어플리케이션 개발에 필요한 라이브러리 추가
+                                        JSP / Servlet
+    JSP / Servlet 개발시 개발자가 해야 할 작없이 많음 ==>스프링 프레임 워크 개발
