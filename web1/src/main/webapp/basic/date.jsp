@@ -18,7 +18,7 @@
  --%>
     <%
         Date date = new Date();
-        out.println(date +"<br>");
+        out.println(date +"<br>"); 
 
     LocalTime corrTime = LocalTime.now();
     out.println(corrTime);
