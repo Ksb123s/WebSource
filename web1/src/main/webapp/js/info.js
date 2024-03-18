@@ -1,30 +1,28 @@
-// submit 클릭시
-// 값이 비어있지 않도록 체크
-
-const id = document.getElementById("id");
-const Name = document.getElementById("name");
-const age = document.getElementById("age");
+// submit 클릭 시
+// 값이 비어 있지않도록 처리
+// age는 숫자인지 확인
 const form = document.querySelector("form");
-let str = "";
-
 form.addEventListener("submit", (e) => {
-  e.preventDefault();
+  e.preventDefault(); // submit 중지
+
+  const id = document.querySelector("#id");
+  const name = document.querySelector("#name");
+  const age = document.querySelector("#age");
+
   if (!id.value) {
-    str = "아이디를 입력해 주세요.";
-    alert(str);
+    alert("아이디를 확인해 주세요");
     id.focus();
     return;
-  } else if (!Name.value) {
-    str = "이름을 입력해 주세요.";
-    alert(str);
-    Name.focus();
+  } else if (!name.value) {
+    alert("이름을 확인해 주세요");
+    name.focus();
     return;
   } else if (!age.value || isNaN(age.value)) {
-    str = "나이를 입력해 주세요.";
-    alert(str);
+    alert("나이를 확인해 주세요");
     age.focus();
     return;
   }
 
+  // 검증 완료 후 폼 submit 실행
   form.submit();
 });

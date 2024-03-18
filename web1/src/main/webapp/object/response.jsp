@@ -10,9 +10,11 @@
     //      1) forward()
     //      2) include("포함할 페이지 경로") : ex) 디자인 템플릿 구성 시 사용
 
-    // http://localhost:8080/object/forward.jsp 요청
-    // forward("content.jsp") 에 있는 페이지가 화면에 보여짐
-    // 주소는 요청 주소인 상태
-    pageContext.forward("content.jsp");
+
+    // sendRedirect(경로)
+    // http://localhost:8080/response/response.jsp 요청    
+    // response.sendRedirect("/basic/input.html"); 페이지가 보여짐
+    // url 도 이동된 주소로 변경됨
+    response.sendRedirect("https://www.naver.com");
 
 %>

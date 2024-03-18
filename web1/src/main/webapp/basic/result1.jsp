@@ -9,10 +9,10 @@
 </head>
 <body>
     <%
-    int num1 = Integer.parseInt(request.getParameter("num1"));
-    int num2 = Integer.parseInt(request.getParameter("num2"));
-    
+        // 클라이언트가 보낸 정보 가져오기
+        int num1 = Integer.parseInt(request.getParameter("num1"));
+        int num2 = Integer.parseInt(request.getParameter("num2"));    
     %>
-    <h4><%=num1%> + <%=num2%> = <%=num1 + num2%></h4>
+    <h4><%=num1%> + <%=num2%> = <%=num1+num2%></h4>
 </body>
 </html>

@@ -8,28 +8,29 @@
     <title>Document</title>
 </head>
 <body>
-     <%
-    int num1 = Integer.parseInt(request.getParameter("num1"));
-    int num2 = Integer.parseInt(request.getParameter("num2"));
-    String op = request.getParameter("op");
-    
-    int result = 0;
-    switch (op) {
-        case "+":
-            result = (num1 + num2);
-            break;
-        case "-":
-            result = (num1 - num2);
-            break;
-        case "*":
-            result = (num1 * num2);
-            break;
-        case "/":
-            result = (num1 / num2);
-            break;
-        default:
-            break;
-        }
+    <%
+        // 사용자 입력값 가져오기
+        int num1 = Integer.parseInt(request.getParameter("num1"));
+        int num2 = Integer.parseInt(request.getParameter("num2"));
+        String op = request.getParameter("op");
+
+        int result = 0;
+        switch (op) {
+            case "+":
+                result = num1 + num2;
+                break;
+            case "-":
+                result = num1 - num2;
+                break;
+            case "*":
+                result = num1 * num2;
+                break;
+            case "/":
+                result = num1 / num2;
+                break;
+            default:
+                break;
+        }       
     %>
     <h4><%=num1%> <%=op%> <%=num2%> = <%=result%></h4>
 </body>
