@@ -6,15 +6,17 @@
 <%
     request.setCharacterEncoding("utf-8");  
     // 사용자가 작성한 코드 입력: 제목 클릭시 no  값 가져오기
+    // value 가 없는 경우 checkboc, radio 경우  on ,off 방식
     String no = request.getParameter("no");
+
     // DB 작업
     ToDoDao dao = new ToDoDao();
-    ToDoDto todo =  dao.getRow(no);
-
+    
     // getRowDto를 read.jsp에 표출
-    request.setAttribute("todo", todo);
+    int result = dao.delete(no);
     
     // 화면이동(List)
-    pageContext.forward("read.jsp");
+    // pageContext.forward("list.jsp");
+    response.sendRedirect("list.jsp");
 
-%> 
+%>

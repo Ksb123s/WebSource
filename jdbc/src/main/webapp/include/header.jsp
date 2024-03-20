@@ -97,7 +97,7 @@
     </style>
 
     <!-- Custom styles for this template -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css" rel="stylesheet" />
+    <link href='<c:url value="/create"/>'rel="stylesheet" />
     <!-- Custom styles for this template -->
     <link href='<c:url value="/css/dashboard.css"/>' rel="stylesheet" />
   </head>
@@ -253,7 +253,7 @@
             <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
               <ul class="nav flex-column">
                 <li class="nav-item">
-                  <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href='<c:url value="/view/list.jsp"/>'>
+                  <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href='<c:url value="/list"/>'>
                     <svg class="bi"><use xlink:href="#house-fill" /></svg>
                     Todo List
                   </a>

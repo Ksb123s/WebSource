@@ -1,17 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ include file="../include/header.jsp"%>
-<%@ page import="DAO.ToDoDao" %>
-<%@ page import="DTO.ToDoDto" %>
-<%@ page import="java.util.List" %>
-<%
-    // DB연동
-    ToDoDao dao = new ToDoDao();
-    List<ToDoDto> list = dao.getList();
-
-%>
- 
-
-
 <h1 class="mt-5">Todo List</h1>
 <table class="table">
   <thead>
@@ -23,24 +11,16 @@
     </tr>
   </thead>
   <tbody>
-  <% for(ToDoDto dto : list){ %>
+   <c:forEach var="dto" items="${list}">
     <tr>
-      <th scope="row"><%= dto.getNo()%></th>
-      <td><a href="readPro.jsp?no=<%= dto.getNo()%>"><%= dto.getTitle()%></a></td>
-      <td><%= dto.getCreatedAt()%></td>
+      <th scope="row">${dto.no}</th>
+      <td><a class="text-decoration-none text-reset" href='<c:url value="/read?no=${dto.no}"/>'>${dto.title}</a></td>
+      <td>${dto.createdAt}</td>
       <td>
-        <% 
-          out.print("<input type='checkbox' class='form-check-input' id='completed' placeholder='completed' name='completed' value='true' onClick='return false'");
-          if(dto.isCompleted()){
-            out.print("checked >");
-          }
-          else{
-            out.print(">");
-          }
-        %>
+        <input type="checkbox" class="form-check-input" id="completed" placeholder="completed" name="completed" value="true" onClick="return false" <c:out value="${dto.completed ? 'checked':''}"/>
       </td>
     </tr>
-      <% } %>
+   </c:forEach>
   </tbody>
 </table>
 <%@ include file="../include/footer.jsp"%>

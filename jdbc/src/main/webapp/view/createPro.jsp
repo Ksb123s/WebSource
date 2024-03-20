@@ -19,6 +19,7 @@
     int result = dao.insert(insertDto);
 
 
+
     // 화면이동(List)
     response.sendRedirect("list.jsp");
 
