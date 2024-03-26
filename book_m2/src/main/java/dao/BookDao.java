@@ -72,13 +72,13 @@ public class BookDao {
         return list;
     }
 
-    public BookDto getRow(int code) {
+    public BookDto getRow(int bno) {
         BookDto dto = null;
         con = getConnection();
         String sql = "select * from booktbl where code=?";
         try {
             pstmt = con.prepareStatement(sql);
-            pstmt.setInt(1, code);
+            pstmt.setInt(1, bno);
             rs = pstmt.executeQuery();
             if (rs.next()) {
                 dto = new BookDto();
@@ -87,6 +87,7 @@ public class BookDao {
                 dto.setWriter(rs.getString("writer"));
                 dto.setPrice(rs.getInt("price"));
                 dto.setDescription(rs.getString("description"));
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
