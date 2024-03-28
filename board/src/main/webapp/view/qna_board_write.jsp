@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%> <%@include file="/include/header.jsp"%>
+pageEncoding="UTF-8"%> <%@include file="../include/header.jsp"%>
 <!-- Main content -->
 <section class="content">
   <div class="box box-primary">
@@ -8,16 +8,18 @@ pageEncoding="UTF-8"%> <%@include file="/include/header.jsp"%>
     </div>
     <div style="height:20px"></div>
     <%-- 
-     1) application/x-www-form-urlencoded : 기본값
-     2) multipart/form-data : file input type 이 존재할 때
-        -request 객체로 처리 불가
+      enctype 
+      1) application/x-www-form-urlencoded : 기본값
+      2) multipart/form-data : file input type 이 존재할 때
+         => request 객체로 처리 불가
 
-        파일업로드 처리
-        1) 외부 라이브러리 활용
-          - Apache Commons FileUpload
-        2) 서블릿
+         파일 업로드
+         1) 외부 라이브러리 사용
+            - Apache Commons FileUpload
+         2) 서블릿 
+
      --%>
-    <form action='<c:url value="/qWrite.do"/>' method="post" role="form" id="writeForm" enctype="multipart/form-data">
+    <form action='<c:url value="/qWrite.do" />' method="post" role="form" id="writeForm" enctype="multipart/form-data">
       <div class="box-body">
         <div class="form-group row">
           <label for="name" class="col-sm-2 col-form-label">작성자</label>
@@ -81,7 +83,7 @@ pageEncoding="UTF-8"%> <%@include file="/include/header.jsp"%>
         <div class="form-group text-center">
           <button type="submit" class="btn btn-primary">등록</button>
           <button type="reset" class="btn btn-danger">다시작성</button>
-          <button type="button" class="btn btn-warning" id="list" >
+          <button type="button" class="btn btn-warning" id="list">
             목록보기
           </button>
         </div>
@@ -91,5 +93,5 @@ pageEncoding="UTF-8"%> <%@include file="/include/header.jsp"%>
   </div>
   <!-- /.box -->
 </section>
-<script src='<c:url value="/js/write.js"/>'></script>
+<script src='<c:url value="/js/write.js" />'></script>
 <%@include file="/include/footer.jsp"%>

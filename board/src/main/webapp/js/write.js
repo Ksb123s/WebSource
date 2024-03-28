@@ -1,14 +1,15 @@
-document.querySelector("form").addEventListener("submit", (e) => {
+// 폼이 비어 있는지 확인
+document.querySelector("#writeForm").addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const Name = document.getElementById("name");
-  const content = document.getElementById("content");
-  const password = document.getElementById("password");
-  const title = document.getElementById("title");
+  const name = document.querySelector("#name");
+  const title = document.querySelector("#title");
+  const content = document.querySelector("#content");
+  const password = document.querySelector("#password");
 
-  if (!Name.value) {
+  if (!name.value) {
     alert("이름을 확인해 주세요");
-    Name.focus();
+    name.focus();
     return;
   } else if (!title.value) {
     alert("제목을 확인해 주세요");
@@ -19,7 +20,7 @@ document.querySelector("form").addEventListener("submit", (e) => {
     content.focus();
     return;
   } else if (!password.value) {
-    alert("비번을 확인해 주세요");
+    alert("비밀번호를 확인해 주세요");
     password.focus();
     return;
   }

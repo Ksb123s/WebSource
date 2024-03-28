@@ -3,7 +3,6 @@ package action;
 import java.io.File;
 import java.util.UUID;
 
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 
@@ -13,45 +12,48 @@ import service.BoardService;
 import service.BoardServiceImpl;
 
 @AllArgsConstructor
-@MultipartConfig
 public class BoardWriteAction implements Action {
 
     private String path;
 
     @Override
     public ActionForward execute(HttpServletRequest req) throws Exception {
-        String name = req.getParameter("name");
-        String title = req.getParameter("title");
-        String content = req.getParameter("content");
-        String password = req.getParameter("password");
-        BoardDto dto = new BoardDto();
-        // 파일 업로드 처리
+
+        // qna_board_write.jsp 넘긴 값 가져오기
+        BoardDto insertDto = new BoardDto();
+        insertDto.setName(req.getParameter("name"));
+        insertDto.setTitle(req.getParameter("title"));
+        insertDto.setContent(req.getParameter("content"));
+        insertDto.setPassword(req.getParameter("password"));
+
+        // 업로드 처리
         Part part = req.getPart("attach");
         String fileName = getFileName(part);
 
-        String dir = "C:\\Upload";
+        String saveDir = "c:\\upload";
 
         if (!fileName.isEmpty()) {
-            // 중복 파일명은 저장을 해주지 않음 => 서버에 저장 시 다른 이름 사용
+
+            // 중복파일명은 저장을 해주지 않음 => 서버에 저장 시 다른 이름 사용
             // 고유한 값 생성 => 고유한값_사용자가 올린 파일명
             UUID uuid = UUID.randomUUID();
-            File uploadFile = new File(dir + File.separator + uuid + "_" + fileName);
-            part.write(uploadFile.toString());
-            dto.setAttach(uploadFile.getName());
+            File uploadFile = new File(saveDir + File.separator + uuid + "_" + fileName);
 
+            // c:\\upload\\1.jpg
+            part.write(uploadFile.toString()); // 서버의 디스크에 파일 저장
+            insertDto.setAttach(uploadFile.getName());
         }
 
-        System.out.println(dto);
-        dto.setName(name);
-        dto.setTitle(title);
-        dto.setContent(content);
-        dto.setPassword(password);
+        System.out.println(insertDto);
 
+        // 서비스 호출
         BoardService service = new BoardServiceImpl();
 
-        if (!service.insert(dto)) {
+        // true : 목록, false : qna_board_write.jsp
+        if (!service.insert(insertDto)) {
             path = "/view/qna_board_write.jsp";
         }
+
         return new ActionForward(path, true);
     }
 

@@ -3,12 +3,24 @@ package service;
 import java.util.List;
 
 import dto.BoardDto;
+import dto.SearchDto;
 
 public interface BoardService {
+    List<BoardDto> list(SearchDto searchDto);
 
-    List<BoardDto> list();
+    boolean insert(BoardDto insertDto);
 
-    Boolean insert(BoardDto insertDto);
+    BoardDto read(int bno);
 
-    BoardDto getRow(int bno);
+    boolean update(BoardDto updateDto);
+
+    boolean delete(BoardDto deleteDto);
+
+    boolean reply(BoardDto replyDto);
+
+    boolean updateCount(int bno);
+
+    List<BoardDto> serachList(SearchDto dto);
+
+    int count(String criteria, String keyword);
 }

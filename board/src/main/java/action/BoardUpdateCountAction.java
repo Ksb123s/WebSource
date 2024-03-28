@@ -1,7 +1,5 @@
 package action;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import dto.BoardDto;
@@ -10,23 +8,22 @@ import service.BoardService;
 import service.BoardServiceImpl;
 
 @AllArgsConstructor
-public class BoardReadAction implements Action {
+public class BoardUpdateCountAction implements Action {
 
     private String path;
 
     @Override
     public ActionForward execute(HttpServletRequest req) throws Exception {
 
+        // 삭제작업
         int bno = Integer.parseInt(req.getParameter("bno"));
 
         // BoardService 호출
         BoardService service = new BoardServiceImpl();
 
-        BoardDto dto = service.read(bno);
+        service.updateCount(bno);
+        path += "?bno=" + bno;
 
-        // req 결과 담기
-        req.setAttribute("dto", dto);
-
-        return new ActionForward(path, false);
+        return new ActionForward(path, true);
     }
 }

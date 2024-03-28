@@ -12,12 +12,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import action.ActionForward;
+import action.BoardDeleteAction;
 import action.BoardListAction;
+import action.BoardModifyAction;
 import action.BoardReadAction;
+import action.BoardReplyAction;
+import action.BoardSearchAction;
+import action.BoardUpdateCountAction;
 import action.BoardWriteAction;
 
 @WebServlet("*.do")
-@MultipartConfig(maxFileSize = 024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 50) // 파일 업로드 지원
+@MultipartConfig(maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 50) // 파일 업로드 지원
 public class BoardControllerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -33,13 +38,25 @@ public class BoardControllerServlet extends HttpServlet {
         Action action = null;
 
         if (cmd.equals("/qList.do")) {
-            // 작업이 끝난 후 보여줄 페이지 경로
             action = new BoardListAction("/view/qna_board_list.jsp");
         } else if (cmd.equals("/qWrite.do")) {
             action = new BoardWriteAction("/qList.do");
         } else if (cmd.equals("/qRead.do")) {
             action = new BoardReadAction("/view/qna_board_view.jsp");
+        } else if (cmd.equals("/qModify.do")) {
+            action = new BoardReadAction("/view/qna_board_modify.jsp");
+        } else if (cmd.equals("/qUpdate.do")) {
+            action = new BoardModifyAction("/qRead.do");
+        } else if (cmd.equals("/qDelete.do")) {
+            action = new BoardDeleteAction("/qList.do");
+        } else if (cmd.equals("/qReplyView.do")) {
+            action = new BoardReadAction("/view/qna_board_reply.jsp");
+        } else if (cmd.equals("/qReply.do")) {
+            action = new BoardReplyAction("/qList.do");
+        } else if (cmd.equals("/qCount.do")) {
+            action = new BoardUpdateCountAction("/qRead.do");
         }
+
         // 생성된 action에게 일 시키기(서블릿(~Pro)이 해야했던 일)
         ActionForward af = null;
         try {

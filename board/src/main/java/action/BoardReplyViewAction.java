@@ -10,7 +10,7 @@ import service.BoardService;
 import service.BoardServiceImpl;
 
 @AllArgsConstructor
-public class BoardReadAction implements Action {
+public class BoardReplyViewAction implements Action {
 
     private String path;
 
@@ -21,7 +21,6 @@ public class BoardReadAction implements Action {
 
         // BoardService 호출
         BoardService service = new BoardServiceImpl();
-
         BoardDto dto = service.read(bno);
 
         // req 결과 담기
